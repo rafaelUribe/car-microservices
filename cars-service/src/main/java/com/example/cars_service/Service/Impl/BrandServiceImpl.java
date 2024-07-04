@@ -1,0 +1,43 @@
+package com.example.cars_service.Service.Impl;
+
+import com.example.cars_service.Model.Brand;
+import com.example.cars_service.Repository.BrandRepository;
+import com.example.cars_service.Service.BrandService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+import java.util.Optional;
+
+public class BrandServiceImpl implements BrandService {
+
+    @Autowired
+    private BrandRepository brandRepository;
+
+    @Override
+    public Brand createBrand(Brand brand) {
+        return brandRepository.save(brand);
+    }
+
+    @Override
+    public List<Brand> getAllBrands() {
+        return brandRepository.findAll();
+    }
+
+    @Override
+    public Optional<Brand> getBrandById(Long id) {
+        return brandRepository.findById(id);
+    }
+
+    @Override
+    public Brand updateBrand(Long id, Brand brandDetails) {
+        Brand brand = brandRepository.findById(id).orElseThrow(() -> new RuntimeException("Brand not found"));
+        brand.setName(brandDetails.getName());
+        return brandRepository.save(brand);
+    }
+
+    @Override
+    public void deleteBrand(Long id) {
+        Brand brand = brandRepository.findById(id).orElseThrow(() -> new RuntimeException("Brand not found"));
+        brandRepository.delete(brand);
+    }
+}
