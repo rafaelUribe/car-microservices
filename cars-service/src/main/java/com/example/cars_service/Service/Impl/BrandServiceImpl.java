@@ -4,10 +4,12 @@ import com.example.cars_service.Model.Brand;
 import com.example.cars_service.Repository.BrandRepository;
 import com.example.cars_service.Service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class BrandServiceImpl implements BrandService {
 
     @Autowired

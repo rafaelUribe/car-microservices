@@ -4,11 +4,12 @@ import com.example.cars_service.Model.CarVersion;
 import com.example.cars_service.Service.CarVersionService;
 import com.example.cars_service.Repository.CarVersionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-
+@Service
 public class CarVersionServiceImpl implements CarVersionService {
 
     @Autowired
