@@ -1,7 +1,6 @@
-package com.example.cars_service.Service;
+package com.example.cars_service.service;
 
-import com.example.cars_service.Model.CarVersion;
-import org.springframework.stereotype.Service;
+import com.example.cars_service.model.CarVersion;
 
 import java.util.List;
 import java.util.Optional;

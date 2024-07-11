@@ -1,7 +1,7 @@
-package com.example.cars_service.Controller;
+package com.example.cars_service.controller;
 
-import com.example.cars_service.Model.Brand;
-import com.example.cars_service.Service.BrandService;
+import com.example.cars_service.model.Brand;
+import com.example.cars_service.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/brands")
+@RequestMapping("/api/cars/brands")
 public class BrandController {
 
     @Autowired

@@ -1,7 +1,7 @@
-package com.example.cars_service.Controller;
+package com.example.cars_service.controller;
 
-import com.example.cars_service.Model.CarVersion;
-import com.example.cars_service.Service.CarVersionService;
+import com.example.cars_service.model.CarVersion;
+import com.example.cars_service.service.CarVersionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/car-versions")
+@RequestMapping("/api/cars/car-versions")
 public class CarVersionController {
 
     @Autowired

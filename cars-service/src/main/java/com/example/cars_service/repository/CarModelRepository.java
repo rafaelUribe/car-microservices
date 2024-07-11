@@ -1,6 +1,6 @@
-package com.example.cars_service.Repository;
+package com.example.cars_service.repository;
 
-import com.example.cars_service.Model.CarModel;
+import com.example.cars_service.model.CarModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

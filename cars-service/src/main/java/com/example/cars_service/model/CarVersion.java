@@ -1,4 +1,4 @@
-package com.example.cars_service.Model;
+package com.example.cars_service.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
