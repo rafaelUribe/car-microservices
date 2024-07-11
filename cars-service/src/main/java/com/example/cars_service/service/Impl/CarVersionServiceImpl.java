@@ -70,5 +70,5 @@ public class CarVersionServiceImpl implements CarVersionService {
         } catch (Exception e) {
             throw new RuntimeException("Failed to create inventory record", e);
         }
-
+    }
 }
