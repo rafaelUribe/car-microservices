@@ -1,4 +1,4 @@
-package com.example.cars_service.model;
+package com.example.cars_service.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Inventory {
-    private Long carVersion;
-    private int quantity;
+public class InventoryResponse {
 
+    Long id;
+    Long versionId;
+    Long quantity;
 }

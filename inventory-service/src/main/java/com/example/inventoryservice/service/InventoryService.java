@@ -20,4 +20,7 @@ public interface InventoryService {
     Object getCarDetails(Long carId);
 
     Inventory updateQuantity(Long carVersionId, String action);
+
+    Inventory getInventoryByVersion(Long carVersionId);
 }
+

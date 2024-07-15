@@ -1,12 +1,16 @@
 package com.example.cars_service.controller;
 
 import com.example.cars_service.model.CarVersion;
+import com.example.cars_service.model.CarModel;
+import com.example.cars_service.model.dto.VersionInventoryDTO;
+import com.example.cars_service.service.CarModelService;
 import com.example.cars_service.service.CarVersionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/cars/car-versions")
@@ -15,8 +19,21 @@ public class CarVersionController {
     @Autowired
     private CarVersionService carVersionService;
 
+    @Autowired
+    private CarModelService carModelService;
+
     @PostMapping
-    public ResponseEntity<CarVersion> createCarVersion(@RequestBody CarVersion carVersion) {
+    public ResponseEntity<?> createCarVersion(@RequestParam String versionName, @RequestParam Long carModelId) {
+        Optional<CarModel> carModelOptional = carModelService.getCarModelById(carModelId);
+        if (!carModelOptional.isPresent()) {
+            return ResponseEntity.status(404).body("Car Model not found");
+        }
+        CarModel carModel = carModelOptional.get();
+        CarVersion carVersion = CarVersion.builder()
+                .versionName(versionName)
+                .carModel(carModel)
+                .fullName(carModel.getBrand().getName() + " " + carModel.getName() + " " + versionName)
+                .build();
         return ResponseEntity.ok(carVersionService.createCarVersion(carVersion));
     }
 
@@ -32,6 +49,11 @@ public class CarVersionController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/byModel/{id}")
+    public ResponseEntity<List<CarVersion>> getCarVersionByModelId(@PathVariable Long id) {
+        return ResponseEntity.ok(carVersionService.getCarVersionByModelId(id));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<CarVersion> updateCarVersion(@PathVariable Long id, @RequestBody CarVersion carVersionDetails) {
         return ResponseEntity.ok(carVersionService.updateCarVersion(id, carVersionDetails));
@@ -41,6 +63,12 @@ public class CarVersionController {
     public ResponseEntity<Void> deleteCarVersion(@PathVariable Long id) {
         carVersionService.deleteCarVersion(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/inventory/{id}")
+    public ResponseEntity<VersionInventoryDTO> getCarVersionInventory(@PathVariable Long id) {
+        VersionInventoryDTO inventoryDTO = carVersionService.getCarVersionInventory(id);
+        return ResponseEntity.ok(inventoryDTO);
     }
 
 }

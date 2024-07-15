@@ -12,6 +12,8 @@ public interface CarModelService {
 
     Optional<CarModel> getCarModelById(Long id);
 
+    List<CarModel> getCarModelsByBrandId(Long id);
+
     CarModel updateCarModel(Long id, CarModel carModelDetails);
 
     void deleteCarModel(Long id);

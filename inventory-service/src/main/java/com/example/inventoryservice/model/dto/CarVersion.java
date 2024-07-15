@@ -1,8 +1,12 @@
 package com.example.inventoryservice.model.dto;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class CarVersion {
     private Long id;
     private String versionName;

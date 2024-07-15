@@ -81,6 +81,11 @@ public class InventoryController {
         }
     }
 
+    @PostMapping("/byCarVersionId")
+    public ResponseEntity<Inventory> getInventoryByCarVersionId(@RequestParam("id") Long id) {
+        return ResponseEntity.ok(inventoryService.getInventoryByVersion(id));
+    }
+
     @GetMapping("/car-details/{carId}")
     public ResponseEntity<Object> getCarDetails(@PathVariable Long carId) {
         try {

@@ -1,6 +1,8 @@
 package com.example.cars_service.controller;
 
+import com.example.cars_service.model.Brand;
 import com.example.cars_service.model.CarModel;
+import com.example.cars_service.service.BrandService;
 import com.example.cars_service.service.CarModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,17 @@ public class CarModelController {
     @Autowired
     private CarModelService carModelService;
 
-    @PostMapping
-    public ResponseEntity<CarModel> createCarModel(@RequestBody CarModel carModel) {
-        return ResponseEntity.ok(carModelService.createCarModel(carModel));
+    @Autowired
+    private BrandService brandService;
+
+    @PostMapping()
+    public ResponseEntity<CarModel> createCarModel(@RequestBody CarModel carModel, @RequestParam Long brandId) {
+        Brand brand = brandService.getBrandById(brandId)
+                .orElseThrow(() -> new RuntimeException("Brand not found"));
+
+        carModel.setBrand(brand);
+        CarModel savedCarModel = carModelService.createCarModel(carModel);
+        return ResponseEntity.ok(savedCarModel);
     }
 
     @GetMapping
@@ -30,6 +40,12 @@ public class CarModelController {
         return carModelService.getCarModelById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/byBrand/{id}")
+    public ResponseEntity<List<CarModel>> getCarModelsByBrandId(@PathVariable Long id) {
+        List<CarModel> carModels = carModelService.getCarModelsByBrandId(id);
+        return ResponseEntity.ok(carModels);
     }
 
     @PutMapping("/{id}")

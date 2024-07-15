@@ -31,6 +31,11 @@ public class CarModelServiceImpl implements CarModelService {
     }
 
     @Override
+    public List<CarModel> getCarModelsByBrandId(Long id) {
+        return carModelRepository.findByBrandId(id);
+    }
+
+    @Override
     public CarModel updateCarModel(Long id, CarModel carModelDetails) {
         CarModel carModel = carModelRepository.findById(id).orElseThrow(() -> new RuntimeException("Car Model not found"));
         carModel.setName(carModelDetails.getName());

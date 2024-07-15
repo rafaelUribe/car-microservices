@@ -78,4 +78,10 @@ public class InventoryServiceImpl implements InventoryService {
         }
     }
 
+    @Override
+    public Inventory getInventoryByVersion(Long carVersionId){
+        return inventoryRepository.findByCarVersion(carVersionId);
+    }
+
+
 }
