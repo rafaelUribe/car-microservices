@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>com.example</groupId>
 		<artifactId>car-inventory-system</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<groupId>com.example</groupId>
 	<artifactId>api-gateway</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>API Gateway</name>
 	<description>Servicio de API Gateway para enrutar solicitudes a los microservicios correspondientes y manejar la comunicación entre los servicios.</description>
 
@@ -45,6 +45,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
